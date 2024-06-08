@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
+<style>
+      body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #98caff;
+  }
+</style>
 <div class="container mb-5 mt-5">
     <form class="col-6 mx-auto card p-3 shadow-dark" method="post" enctype="multipart/form-data">
         {% csrf_token %}

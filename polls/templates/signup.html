@@ -1,50 +1,82 @@
 {% extends "base.html" %}
 
 {% block content %}
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #98caff;
+  }
+
+  .card {
+    border: none;
+    border-radius: 1rem;
+  }
+
+  .card h2 {
+    font-weight: 600;
+  }
+
+  .form-label {
+    font-weight: 500;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+    font-weight: 500;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+
+  .btn-outline-danger {
+    font-weight: 500;
+  }
+
+  .alert {
+    border-radius: 1rem;
+  }
+
+  .container {
+    margin-top: 100px;
+  }
+</style>
+
 <div class="container mb-5 mt-5">
-    <form class="col-6 mx-auto card p-3 shadow-dark" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <h2>signup</h2>
-        <hr>
-        {% if messages %}
-        <div class="alert alert-success" role="alert">
-            {% for message in messages %}
-            {{ message }}
-            {% endfor %}
-          </div>
-        <ul class="messages">
-         
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}></li>
-           
-        </ul>
-        {% endif %}
-        <form>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">first name</label>
-                <input type="text" class="form-control" name="first_name" id="exampleInputEmail1" aria-describedby="emailHelp">
-                
-              </div>
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">last name</label>
-                <input type="text" name="last_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                
-              </div>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">username</label>
-            <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" name="password" class="form-control" id="exampleInputPassword1">
-          </div>
-
-
-          <p>Already have account <a href="/login_page/" class="btn btn-outline-danger"> login here</a></p>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-   
- 
-   
+  <div class="col-lg-6 col-md-8 col-sm-10 mx-auto">
+    <form class="card p-4 shadow-lg" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h2 class="text-center">Sign Up</h2>
+      <hr>
+      {% if messages %}
+      <div class="alert alert-success" role="alert">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+      </div>
+      {% endif %}
+      <div class="mb-3">
+        <label for="firstName" class="form-label">First Name</label>
+        <input type="text" class="form-control" name="first_name" id="firstName" required>
+      </div>
+      <div class="mb-3">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input type="text" class="form-control" name="last_name" id="lastName" required>
+      </div>
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" name="username" id="username" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" name="password" id="password" required>
+      </div>
+      <p>Already have an account? <a href="/login_page/" class="btn btn-outline-danger" data-bs-theme="blue">Login here</a></p>
+      <button type="submit" class="btn btn-primary w-100">Submit</button>
+    </form>
+  </div>
 </div>
 {% endblock %}

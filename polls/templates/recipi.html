@@ -1,58 +1,132 @@
 {% extends "base.html" %}
 
 {% block content %}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #343a40;
+}
+
+.card {
+    border: none;
+    border-radius: 1rem;
+}
+
+.card h2 {
+    font-weight: 600;
+}
+
+.form-label {
+    font-weight: 500;
+}
+
+.btn-lightblue {
+    background-color: #ADD8E6;
+    border: none;
+    color: #000;
+    font-weight: 500;
+}
+
+.btn-lightblue:hover {
+    background-color: #87CEEB;
+    color: #000;
+}
+
+.btn-danger {
+    background-color: #FF2400;
+    border: none;
+    font-weight: 500;
+}
+
+.btn-danger:hover {
+    background-color: #CC1C00;
+}
+
+.input-group-text {
+    background-color: #ADD8E6;
+    border: none;
+}
+
+.input-group .form-control {
+    border: 1px solid #ADD8E6;
+}
+
+.table thead {
+    background-color: #343a40;
+    color: #fff;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.img-rounded {
+    border-radius: 0.5rem;
+}
+</style>
+
 <div class="container mb-5 mt-5">
-    <form class="col-6 mx-auto card p-3 shadow-dark" method="post" enctype="multipart/form-data">
+    <form class="col-6 mx-auto card p-4 shadow-lg" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <h2>Add Recipe</h2>
+        <h2 class="text-center">Add Recipe</h2>
         <hr>
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Recipe name</label>
+            <label for="recipi_name" class="form-label">Recipe name</label>
             <input required name="recipi_name" type="text" class="form-control" placeholder="Add Recipe Name">
         </div>
         <div class="mb-3">
-            <label required for="exampleInputDescription" class="form-label">Recipe Description</label>
+            <label for="recipi_description" class="form-label">Recipe Description</label>
             <textarea required name="recipi_description" class="form-control" placeholder="Add Here Description"></textarea>
         </div>
         <div class="mb-3">
-            <label for="exampleInputFile" class="form-label">Recipe image</label>
-            <input name="recipi_image" type="file" class="form-control" placeholder="Add Image">
+            <label for="recipi_image" class="form-label">Recipe image</label>
+            <input name="recipi_image" placeholder="." type="file" class="form-control">
         </div>
-        <button type="submit" class="btn btn-success">Add Recipe</button>
+        <button type="submit" class="btn btn-lightblue w-100">Add Recipe</button>
     </form>
     <hr>
     <div class="mb-3 mt-5 text-center">
-        <form class="d-inline-block" style="width: 50%;">
-            <label for="exampleInputEmail1" class="form-label">Search Food</label>
-            <input required name="search" type="text" class="form-control" placeholder="Search recipi">
-            <button type="submit" class="btn btn-primary mt-2">Search</button>
+        <form class="d-inline-block" style="width: 100%; max-width: 400px;">
+            <label for="search" class="form-label">Search Food</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                <input required name="search" type="text" class="form-control" placeholder="Search recipe">
+                <button type="submit" class="btn btn-lightblue">Search</button>
+            </div>
         </form>
     </div>
-    <table class="table mt-5">
-        <thead>
-          <tr>
-            <th scope="col">Index</th>
-            <th scope="col">Recipi name</th>
-            <th scope="col">Recipi Desc</th>
-            <th scope="col">Recipi img</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-            {% for recip in recipies %}
-          <tr>
-            <th scope="row"> {{ forloop.counter }} </th>
-            <td>{{ recip.recipi_name }}</td>
-            <td>{{ recip.recipi_description }}</td>
-            <td><img src="/media/{{ recip.recipi_image }}" alt="img" style="height: 150px;"></td>
-            <td>
-              <a href="/delete_recipi/{{ recip.id }}" class="btn btn-danger m-1">Delete</a>
-              <a href="/update_recipi/{{ recip.id }}" class="btn btn-success">Update</a>
-            </td>
-          </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    
+
+    <div class="table-responsive mt-5">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Index</th>
+                    <th scope="col">Recipe name</th>
+                    <th scope="col">Recipe Desc</th>
+                    <th scope="col">Recipe img</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recip in recipies %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ recip.recipi_name }}</td>
+                    <td>{{ recip.recipi_description }}</td>
+                    <td><img src="/media/{{ recip.recipi_image }}" alt="img" class="img-rounded" style="height: 150px;"></td>
+                    <td>
+                        <a href="/delete_recipi/{{ recip.id }}" class="btn btn-danger m-1">Delete</a>
+                        <a href="/update_recipi/{{ recip.id }}" class="btn btn-lightblue">Update</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
+
+<!-- Include Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 {% endblock %}
