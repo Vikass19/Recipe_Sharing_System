@@ -90,10 +90,10 @@ Recipe_Sharing_System/
 ## Screenshots
 
 ### Homepage
-![Homepage Screenshot](media/homepage-screenshot.png)
+![Homepage Screenshot](media/RECIPI.png)
 
 ### Recipe Page
-![Recipe Page Screenshot](media/recipe-page-screenshot.png)
+![Recipe Page Screenshot](media/login_page.png)
 
 ---
 
