@@ -6,56 +6,88 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #343a40;
+    background-color: #f8f9fa;
+    color: #343a40;
 }
 
 .card {
     border: none;
     border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .card h2 {
     font-weight: 600;
+    color: #495057;
 }
 
 .form-label {
     font-weight: 500;
+    color: #495057;
 }
 
-.btn-lightblue {
-    background-color: #ADD8E6;
+.btn-primary {
+    background-color: #1d3557;
     border: none;
-    color: #000;
+    color: #ffffff;
     font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.btn-lightblue:hover {
-    background-color: #87CEEB;
-    color: #000;
+.btn-primary:hover {
+    background-color: #457b9d;
+    transform: scale(1.05);
 }
 
 .btn-danger {
-    background-color: #FF2400;
+    background-color: #e63946;
+    border: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-danger:hover {
+    background-color: #d62828;
+    transform: scale(1.05);
+}
+
+.input-group-text {
+    background-color: #f1faee;
     border: none;
     font-weight: 500;
 }
 
-.btn-danger:hover {
-    background-color: #CC1C00;
-}
-
-.input-group-text {
-    background-color: #ADD8E6;
-    border: none;
-}
-
 .input-group .form-control {
-    border: 1px solid #ADD8E6;
+    border: 1px solid #dee2e6;
+    transition: border-color 0.3s ease;
+}
+
+.input-group .form-control:focus {
+    border-color: #1d3557;
+    box-shadow: 0 0 0 0.2rem rgba(29, 53, 87, 0.25);
+}
+
+.table {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .table thead {
-    background-color: #343a40;
-    color: #fff;
+    background-color: #1d3557;
+    color: #ffffff;
+}
+
+.table tbody tr {
+    transition: background-color 0.3s ease;
 }
 
 .table tbody tr:hover {
@@ -64,61 +96,82 @@ body {
 
 .img-rounded {
     border-radius: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.img-rounded:hover {
+    transform: scale(1.05);
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 </style>
 
-<div class="container mb-5 mt-5">
-    <form class="col-6 mx-auto card p-4 shadow-lg" method="post" enctype="multipart/form-data">
+<div class="container mb-5 mt-5 fade-in">
+    <form class="col-6 mx-auto card p-4" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <h2 class="text-center">Add Recipe</h2>
-        <hr>
+        <h2 class="text-center mb-4">Add a New Recipe</h2>
         <div class="mb-3">
-            <label for="recipi_name" class="form-label">Recipe name</label>
+            <label for="recipi_name" class="form-label">Recipe Name</label>
             <input required name="recipi_name" type="text" class="form-control" placeholder="Add Recipe Name">
         </div>
         <div class="mb-3">
             <label for="recipi_description" class="form-label">Recipe Description</label>
-            <textarea required name="recipi_description" class="form-control" placeholder="Add Here Description"></textarea>
+            <textarea required name="recipi_description" class="form-control" placeholder="Add Description"></textarea>
         </div>
         <div class="mb-3">
-            <label for="recipi_image" class="form-label">Recipe image</label>
-            <input name="recipi_image" placeholder="." type="file" class="form-control">
+            <label for="recipi_image" class="form-label">Recipe Image</label>
+            <input name="recipi_image" type="file" class="form-control">
         </div>
-        <button type="submit" class="btn btn-lightblue w-100">Add Recipe</button>
+        <button type="submit" class="btn btn-primary w-100">Add Recipe</button>
     </form>
-    <hr>
-    <div class="mb-3 mt-5 text-center">
+    
+    <div class="mt-5 text-center">
         <form class="d-inline-block" style="width: 100%; max-width: 400px;">
-            <label for="search" class="form-label">Search Food</label>
+            <label for="search" class="form-label">Search for a Recipe</label>
             <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-search"></i></span>
                 <input required name="search" type="text" class="form-control" placeholder="Search recipe">
-                <button type="submit" class="btn btn-lightblue">Search</button>
+                <button type="submit" class="btn btn-primary">Search</button>
             </div>
         </form>
     </div>
 
     <div class="table-responsive mt-5">
-        <table class="table table-bordered table-hover">
+        <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th scope="col">Index</th>
-                    <th scope="col">Recipe name</th>
-                    <th scope="col">Recipe Desc</th>
-                    <th scope="col">Recipe img</th>
-                    <th scope="col">Action</th>
+                    <th>Index</th>
+                    <th>Recipe Name</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for recip in recipies %}
                 <tr>
-                    <th scope="row">{{ forloop.counter }}</th>
+                    <th>{{ forloop.counter }}</th>
                     <td>{{ recip.recipi_name }}</td>
                     <td>{{ recip.recipi_description }}</td>
-                    <td><img src="/media/{{ recip.recipi_image }}" alt="img" class="img-rounded" style="height: 150px;"></td>
+                    <td>
+                        <img src="/media/{{ recip.recipi_image }}" alt="Recipe Image" class="img-rounded" style="height: 150px;">
+                    </td>
                     <td>
                         <a href="/delete_recipi/{{ recip.id }}" class="btn btn-danger m-1">Delete</a>
-                        <a href="/update_recipi/{{ recip.id }}" class="btn btn-lightblue">Update</a>
+                        <a href="/update_recipi/{{ recip.id }}" class="btn btn-primary">Update</a>
                     </td>
                 </tr>
                 {% endfor %}
