@@ -93,7 +93,7 @@ Recipe_Sharing_System/
 ![Homepage Screenshot](media/media/REIPE_PAGE.png)
 
 ### Recipe Page
-![Recipe Page Screenshot](media/login_page.png)
+![Recipe Page Screenshot](media/media/login_page.png)
 
 ---
 
