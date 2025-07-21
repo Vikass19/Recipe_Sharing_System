@@ -121,6 +121,6 @@ Contributions are welcome! Follow these steps to contribute:
 
 - **Developer**: Vikas Bansode
 - **Email**: vikasbansode804@gmail.com
-- **Portfolio**: [Portfolio Link](https:codebyvikas.xyz)
+- **Portfolio**: [Portfolio Link](https://codebyvikas.xyz)
 ```
 
