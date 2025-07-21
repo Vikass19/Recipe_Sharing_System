@@ -1,4 +1,3 @@
-Here’s a basic structure for your `README.md` file for the Recipe Sharing System project:
 
 ```markdown
 # Recipe Sharing System
@@ -116,24 +115,12 @@ Contributions are welcome! Follow these steps to contribute:
    ```
 5. Open a pull request.
 
----
 
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-
----
 
 ## Contact
 
 - **Developer**: Vikas Bansode
 - **Email**: vikasbansode804@gmail.com
-- **Portfolio**: [Portfolio Link](https://vikass19.github.io/wiki.github.io/)
+- **Portfolio**: [Portfolio Link](https:codebyvikas.xyz)
 ```
 
-### Notes:
-1. Replace `username` in the clone command with your GitHub username.
-2. Add relevant screenshots in the `media/` folder or update paths if different.
-3. Ensure your `Requirements.txt` file is updated before sharing.
-
-Let me know if you need help tweaking any section!
